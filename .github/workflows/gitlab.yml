@@ -1,0 +1,19 @@
+---
+name: Trigger gitlab pipeline
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  bash-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run curl
+        run: |
+          curl -X POST \
+          --fail \
+          -F token=${{ secrets.GITLAB_PIPELINE_TRIGGER_TOKEN }} \
+          -F ref=trigger \
+          -F variables[GITHUB_REF]=${GITHUB_REF} \
+          https://gitlab.cern.ch/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline
