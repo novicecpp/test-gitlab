@@ -15,5 +15,5 @@ jobs:
           --fail \
           -F token=${{ secrets.GITLAB_PIPELINE_TRIGGER_TOKEN }} \
           -F ref=trigger \
-          -F variables[GITHUB_REF]=${GITHUB_REF} \
+          -F variables[GITHUB_REF_NAME]=${GITHUB_REF_NAME} \
           https://gitlab.cern.ch/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline
